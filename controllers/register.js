@@ -12,7 +12,7 @@ const register = async (req, res) => {
         );
 
     }
-    const user = await User.create(req.body);
+    const user = await User.create({...req.body, username: req.body.username.toLowerCase()});
     res.status(200).send(user);
   } catch (err) {
     console.log(err);
