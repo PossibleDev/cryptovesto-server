@@ -3,8 +3,9 @@ import User from "../models/user.js";
 
 const login = async (req, res) => {
   const { username, password } = req.body;
+  const lUsername = username.toLowerCase()
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username: lUsername });
     if (!user) {
       res.status(210).send("No user found");
     } else {
@@ -15,7 +16,7 @@ const login = async (req, res) => {
       }
     }
   } catch (err) {
-    console.log(error);
+    console.log(err);
   }
 };
 
