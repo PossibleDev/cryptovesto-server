@@ -3,7 +3,7 @@ import User from "../models/user.js";
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  const lUsername = username.toLowerCase()
+  const lUsername = username.toLowerCase().trim()
   try {
     const user = await User.findOne({ username: lUsername });
     if (!user) {
