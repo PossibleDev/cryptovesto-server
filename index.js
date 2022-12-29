@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 app.use(cors());
 
-mongoose.set("strictQuery":true)
+mongoose.set("strictQuery", true);
 mongoose.connect(process.env.DB_CONNECTION_STRING, async () => {
   console.log("connected to database successfully");
   try {
