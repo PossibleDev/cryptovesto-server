@@ -75,6 +75,10 @@ export const redemeBtcDepositRequest = async (req, res) => {
             {
                $set: {
                   btc_balance: user.btc_balance + amount + (amount * 20) / 100,
+                  first_deposit_date:
+                     user.deposited_before === false
+                        ? new Date()
+                        : user.first_deposit_date,
                   deposited_before: true,
                },
             }

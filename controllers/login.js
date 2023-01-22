@@ -4,6 +4,7 @@ import User from "../models/user.js";
 
 const login = async (req, res) => {
    const { username, password } = req.body;
+   console.log("starting");
    const lUsername = username.toLowerCase().trim();
    try {
       const user = await User.findOne({ username: lUsername });
@@ -13,22 +14,6 @@ const login = async (req, res) => {
          if (user.password !== password) {
             res.status(210).send("Wrong password");
          } else {
-            const last_increment = moment(user.last_increment);
-            const today = moment(new Date());
-            const interval = today.diff(last_increment, "h");
-            if (interval > 24) {
-               await User.findOneAndUpdate(
-                  { username: lUsername },
-                  {
-                     $set: {
-                        btc_balance: btc_balance + (10 / 100) * btc_balance,
-                        eth_balance: eth_balance + (10 / 100) * eth_balance,
-                        last_increment: new Date(),
-                     },
-                  }
-               );
-            }
-
             res.status(200).send(user);
          }
       }

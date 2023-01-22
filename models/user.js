@@ -45,7 +45,7 @@ const UserSchema = new mongoose.Schema(
       referred_by: {
          type: String,
       },
-      last_increment: {
+      first_deposit_date: {
          type: Date,
          default: new Date(),
       },
